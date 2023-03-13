@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id "org.asciidoctor.jvm.convert" version "3.3.2" // (1) Asciidoctor 플러그인을 적용합니다.
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    asciidoctorExt // (2) Asciidoctor를 확장하는 종속성에 대한 구성을 선언합니다
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext { // (3) 생성된 스니펫의 출력 위치를 정의하도록 속성을 구성합니다.
+    snippetsDir = file('build/generated-snippets')
+}
+
+test { // (4) test스니펫 디렉터리를 출력으로 추가하도록 작업을 구성합니다.
+    outputs.dir snippetsDir
+}
+
+asciidoctor.doFirst { // (5)
+    delete file('src/main/resources/static/docs')
+}
+
+asciidoctor { // (6) asciidoctor: 작업을 구성합니다.
+    dependsOn test // (7) test 작업이 먼저 실행되도록 합니다.
+    inputs.dir snippetsDir // (8) 스니펫 디렉터리를 입력으로 구성합니다.
+    configurations 'asciidoctorExt' // (9) asciidoctorExt: 확장에 대한 구성 사용을 구성합니다.
+}
+
+task copyDocument(type: Copy) { // (10) update
+    dependsOn asciidoctor
+    from file("build/docs/asciidoc")
+    into file("src/main/resources/static/docs")
+}
+
+bootJar {
+    dependsOn asciidoctor // (11) bootJar가 빌드되기 전에 문서가 생성됩니다.
+    from "${asciidoctor.outputDir}"
+    into file("src/main/resources/static/docs") // (12) 생성된 문서를 static/docs 디렉토리에 복사합니다.
+}
+
+build {
+    dependsOn copyDocument
+}
+
+tasks.named('test') {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+tasks.named('asciidoctor') {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Spring Rest Docs
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+}

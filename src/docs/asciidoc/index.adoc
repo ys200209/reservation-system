@@ -1,0 +1,17 @@
+= Sample API
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels:2
+:sectlinks:
+
+== API 테스트
+
+=== 요청
+include::{snippets}/sample/http-request.adoc[]
+include::{snippets}/sample/request-fields.adoc[]
+
+=== 응답
+include::{snippets}/sample/http-response.adoc[]
+include::{snippets}/sample/response-fields.adoc[]
