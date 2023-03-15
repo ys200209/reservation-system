@@ -1,4 +1,4 @@
-= Sample API
+= Reservation System API
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -6,12 +6,11 @@
 :toclevels:2
 :sectlinks:
 
-== API 테스트
+== 카테고리 조회
 
 === 요청
-include::{snippets}/sample/http-request.adoc[]
-include::{snippets}/sample/request-fields.adoc[]
+include::{snippets}/api/categories/http-request.adoc[]
 
 === 응답
-include::{snippets}/sample/http-response.adoc[]
-include::{snippets}/sample/response-fields.adoc[]
+include::{snippets}/api/categories/http-response.adoc[]
+include::{snippets}/api/categories/response-fields.adoc[]
