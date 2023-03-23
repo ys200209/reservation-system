@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.18">
-<meta name="author" content=":toclevels:2">
+<meta name="author" content="https://github.com/ys200209">
 <title>Reservation System API</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -443,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="header">
 <h1>Reservation System API</h1>
 <div class="details">
-<span id="author" class="author">:toclevels:2</span><br>
+<span id="author" class="author">https://github.com/ys200209</span><br>
 <span id="revnumber">version 0.0.1-SNAPSHOT</span>
 </div>
 <div id="toc" class="toc2">
@@ -453,6 +453,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_요청">요청</a></li>
 <li><a href="#_응답">응답</a></li>
+</ul>
+</li>
+<li><a href="#_전시_정보_조회">전시 정보 조회</a>
+<ul class="sectlevel2">
+<li><a href="#_요청_2">요청</a></li>
+<li><a href="#_응답_2">응답</a></li>
+</ul>
+</li>
+<li><a href="#_프로모션_정보_조회">프로모션 정보 조회</a>
+<ul class="sectlevel2">
+<li><a href="#_요청_3">요청</a></li>
+<li><a href="#_응답_3">응답</a></li>
 </ul>
 </li>
 </ul>
@@ -549,11 +561,354 @@ Content-Length: 369
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_전시_정보_조회"><a class="link" href="#_전시_정보_조회">전시 정보 조회</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_요청_2"><a class="link" href="#_요청_2">요청</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/displayinfos HTTP/1.1
+Content-Type: application/json
+Content-Length: 40
+Host: localhost:8080
+
+{
+  "categoryId" : 3,
+  "start" : 0
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>categoryId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리 아이디 (0 또는 없을 경우 전체 조회)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>start</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">조회 시작 위치</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_응답_2"><a class="link" href="#_응답_2">응답</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 4091
+
+{
+  "totalCount" : 16,
+  "productCount" : 4,
+  "products" : [ {
+    "id" : 21,
+    "categoryId" : 3,
+    "displayInfoId" : 21,
+    "name" : "콘서트",
+    "description" : "5TARDIUM 2018",
+    "content" : "Surrealistic EDM Festival with Magnificent Stage and Performances. 2 Days, 10 Artists for 5th Anniversary!",
+    "event" : "",
+    "openingHours" : "2017년 12월 12일(토) 12PM",
+    "placeName" : "장소 추후 공개",
+    "placeLot" : "서울특별시 중구 태평로1가 31",
+    "placeStreet" : "서울특별시 중구 세종대로 110",
+    "tel" : "010-3360-7846",
+    "homepage" : "",
+    "email" : "",
+    "createDate" : "2023-02-12T17:17:38",
+    "modifyDate" : "2023-02-12T17:17:38",
+    "fileId" : 113
+  }, {
+    "id" : 22,
+    "categoryId" : 3,
+    "displayInfoId" : 22,
+    "name" : "콘서트",
+    "description" : "노브레인 연말 콘서트 [락이 먼저다]",
+    "content" : "노브레인 연말 콘서트 2017.12.30.(SAT) 저녁 7시 @롤링홀",
+    "event" : "",
+    "openingHours" : "2017.12.30.(SAT) 저녁 7시\n",
+    "placeName" : "@롤링홀",
+    "placeLot" : "서울특별시 마포구 서교동 402-22",
+    "placeStreet" : "서울특별시 마포구 어울마당로 35",
+    "tel" : "02-322-8487",
+    "homepage" : "",
+    "email" : "",
+    "createDate" : "2023-02-12T17:17:38",
+    "modifyDate" : "2023-02-12T17:17:38",
+    "fileId" : 115
+  }, {
+    "id" : 23,
+    "categoryId" : 3,
+    "displayInfoId" : 23,
+    "name" : "콘서트",
+    "description" : "[크리스마스 살롱콘서트] 재즈 보컬 듀엣 허성&amp;마리아킴",
+    "content" : "[크리스마스 살롱 콘서트]\n재즈 보컬 듀엣 허성 &amp; 마리아킴\nChristmas Salon Concert:\nJazz Vocalist Duet Sung Huh &amp; Maria Kim\n\n2017년 12월24일 (일) 1회차: 오후 7시 / 2회차: 오후 9시\n강남역 카페 피아노 리브레\n비지정석\n\n크리스마스 이브! 연인과 친구, 가족들과 함께 아늑한 강남역 피아노 리브레에서 감미로운 재즈 살롱 콘서트를 즐기세요. 모두가 즐길 수 있는 재즈 러브송 들과 크리스마스 캐롤을 들려드립니다. 공연을 관람하시는 분께는 피아노 리브레 시그니쳐 샹그리아와 허성/마리아킴의 앨범 한장을 증정해 드립니다.\n",
+    "event" : "",
+    "openingHours" : "2017년 12월24일 (일) 1회차: 오후 7시 / 2회차: 오후 9시\n",
+    "placeName" : "카페 피아노 리브레 강남점\n",
+    "placeLot" : "서울특별시 강남구 역삼동 818-5 혜진빌딩 2층",
+    "placeStreet" : "서울특별시 강남구 강남대로96길 20 혜진빌딩",
+    "tel" : "02-554-9913",
+    "homepage" : "https://youtu.be/BuaEQSxVR5A",
+    "email" : "",
+    "createDate" : "2023-02-12T17:17:38",
+    "modifyDate" : "2023-02-12T17:17:38",
+    "fileId" : 117
+  }, {
+    "id" : 24,
+    "categoryId" : 3,
+    "displayInfoId" : 24,
+    "name" : "콘서트",
+    "description" : "Odd Christmas\n",
+    "content" : "데미안 라이스도 감탄한 거리의 연주자, 어쿠스틱 혼성 듀오\n오드트리(Odd Tree) 단독콘서트 'Odd Christmas' 개최 @벨로주\n\n이번 'Odd Christmas'에서는 연말을 맞이하여\n크리스마스 캐럴을 포함, 그 동안 선보인 적 없던 다양한 곡을\n오드트리 만의 감성으로 풀어내며 관객들에게 포근하고 아늑한 선물 같은 시간을 선사하고자 합니다.\n\n이번 공연은 오드트리가 관객들에게 드리는 '선물'인 만큼, 선착순 30명에 한하여 1+1로 예매 가능합니다.\n",
+    "event" : "",
+    "openingHours" : "2017년 12월 22일(금) 오후 8시",
+    "placeName" : "망원동 벨로주",
+    "placeLot" : "서울특별시 마포구 망원동 422-27 메디움빌딩 4층",
+    "placeStreet" : "서울특별시 마포구 포은로 117 메디움빌딩 4층\n",
+    "tel" : "02-2644-4315",
+    "homepage" : "",
+    "email" : "",
+    "createDate" : "2023-02-12T17:17:38",
+    "modifyDate" : "2023-02-12T17:17:38",
+    "fileId" : 119
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>totalCount</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 카테고리의 전시 상품 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>productCount</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">읽어온 전시 상품 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전시 상품 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전시 상품 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].categoryId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].displayInfoId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전시 상품 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전시 상품명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전시 상품 설명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전시 상품 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].event</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이벤트</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].openingHours</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오픈 시각</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].placeName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">장소</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].placeLot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">위치</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].placeStreet</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">도로명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].tel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">연락처</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].homepage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">홈페이지</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].email</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].createDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">생성일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].modifyDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>products[].fileId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">파일 ID</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_프로모션_정보_조회"><a class="link" href="#_프로모션_정보_조회">프로모션 정보 조회</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_요청_3"><a class="link" href="#_요청_3">요청</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/promotions HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_응답_3"><a class="link" href="#_응답_3">응답</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 176
+
+{
+  "size" : 0,
+  "items" : [ {
+    "id" : 0,
+    "productId" : 0,
+    "categoryId" : 0,
+    "categoryName" : null,
+    "description" : null,
+    "fileId" : 0
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 정보의 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 PK</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].productId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].categoryId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 카테고리 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].categoryName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 카테고리명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 설명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].fileId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">file_info 테이블의 id (product_image의 타입중 ma인 경우만)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-03-13 19:41:57 +0900
+Last updated 2023-03-23 01:02:21 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

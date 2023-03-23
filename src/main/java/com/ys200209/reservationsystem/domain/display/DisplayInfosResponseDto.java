@@ -4,12 +4,16 @@ import com.ys200209.reservationsystem.utils.restdocs.RestDocsDto;
 import com.ys200209.reservationsystem.utils.restdocs.RestDocsTemplate;
 import java.util.List;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
 
 @Builder
 @Getter
+@ToString
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
 public class DisplayInfosResponseDto implements RestDocsTemplate {

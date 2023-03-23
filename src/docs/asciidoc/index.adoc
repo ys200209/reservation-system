@@ -1,16 +1,25 @@
 = Reservation System API
+https://github.com/ys200209
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
 :toc: left
-:toclevels:2
+:toclevels: 2
 :sectlinks:
 
 == 카테고리 조회
-
 === 요청
 include::{snippets}/api/categories/http-request.adoc[]
 
 === 응답
 include::{snippets}/api/categories/http-response.adoc[]
 include::{snippets}/api/categories/response-fields.adoc[]
+
+== 전시 정보 조회
+=== 요청
+include::{snippets}/api/displayinfos/http-request.adoc[]
+include::{snippets}/api/displayinfos/request-fields.adoc[]
+
+=== 응답
+include::{snippets}/api/displayinfos/http-response.adoc[]
+include::{snippets}/api/displayinfos/response-fields.adoc[]

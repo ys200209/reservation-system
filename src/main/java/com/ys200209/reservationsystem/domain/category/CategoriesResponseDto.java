@@ -8,10 +8,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 
 @Builder
 @Getter
+@ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
