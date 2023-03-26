@@ -45,9 +45,10 @@ public class ReservationRestDocsTest {
     @Test
     void generateDocsApiCategories() throws Exception {
         // then
-        mockMvc.perform(get("/api/categories"))
+        String URI = "/api/categories";
+        mockMvc.perform(get(URI))
                 .andExpect(status().isOk())
-                .andDo(RestDocsGenerator.generate("/api/categories", null, new CategoriesResponseDto()));
+                .andDo(RestDocsGenerator.generate(URI, null, new CategoriesResponseDto()));
     }
 
     @Test
@@ -59,10 +60,20 @@ public class ReservationRestDocsTest {
                 .build();
 
         // then
-        mockMvc.perform(get("/api/displayinfos")
+        String URI = "/api/displayinfos";
+        mockMvc.perform(get(URI)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(requestDto)))
                 .andExpect(status().isOk())
-                .andDo(RestDocsGenerator.generate("/api/displayinfos", new DisplayInfosRequestDto(), new DisplayInfosResponseDto()));
+                .andDo(RestDocsGenerator.generate(URI, new DisplayInfosRequestDto(), new DisplayInfosResponseDto()));
+    }
+
+    @Test
+    void generateDocsApiPromotions() throws Exception {
+        // then
+        String URI = "/api/promotions";
+        mockMvc.perform(get(URI))
+                .andExpect(status().isOk())
+                .andDo(RestDocsGenerator.generate(URI, null, new PromotionsResponseDto()));
     }
 }
