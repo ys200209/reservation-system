@@ -23,3 +23,11 @@ include::{snippets}/api/displayinfos/request-fields.adoc[]
 === 응답
 include::{snippets}/api/displayinfos/http-response.adoc[]
 include::{snippets}/api/displayinfos/response-fields.adoc[]
+
+== 프로모션 정보 조회
+=== 요청
+include::{snippets}/api/promotions/http-request.adoc[]
+
+=== 응답
+include::{snippets}/api/promotions/http-response.adoc[]
+include::{snippets}/api/promotions/response-fields.adoc[]

@@ -5,6 +5,8 @@ import com.ys200209.reservationsystem.domain.category.CategoryResponseDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfoResponseDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfosResponseDto;
+import com.ys200209.reservationsystem.domain.promotion.PromotionResponseDto;
+import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import com.ys200209.reservationsystem.utils.sql.SQLMapper;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +38,6 @@ public class JdbcReservationRepository implements ReservationRepository {
                 DisplayInfoResponseDto.displayInfoMapper,
                 requestDto.getCategoryId()
         );
-        log.info("Repository#getDisplayInfos(): {}", results);
         return new DisplayInfosResponseDto(results.size(), SHOW_PRODUCT_COUNT_AMOUNT, getProductCountResult(results, requestDto));
     }
 
@@ -50,6 +51,15 @@ public class JdbcReservationRepository implements ReservationRepository {
         return IntStream.range(start, end)
                 .mapToObj(results::get)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PromotionsResponseDto getPromotions() {
+        List<PromotionResponseDto> results = jdbcTemplate.query(
+                SQLMapper.SELECT_PROMOTIONS_QUERY,
+                PromotionResponseDto.promotionMapper
+        );
+        return PromotionsResponseDto.builder().size(results.size()).items(results).build();
     }
 }
 

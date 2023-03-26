@@ -8,6 +8,8 @@ import com.ys200209.reservationsystem.domain.category.CategoryResponseDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfoResponseDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfosResponseDto;
+import com.ys200209.reservationsystem.domain.promotion.PromotionResponseDto;
+import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +28,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class JdbcReservationRepositoryTest {
     public static CategoriesResponseDto categories = getCategoriesResponseDto();
 
-    @Autowired JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     private ReservationRepository repository;
 
@@ -57,6 +60,18 @@ public class JdbcReservationRepositoryTest {
         assertThat(actual.getProducts().size()).isEqualTo(expectedSize); // products 개수 검증
     }
 
+    @Test
+    void testApiPromotions() {
+        // when
+        PromotionsResponseDto actual = repository.getPromotions();
+
+        // then
+        PromotionsResponseDto expected = getPromotionsResponseDto();
+        assertThat(actual.getSize()).isEqualTo(expected.getSize());
+        assertThat(actual.getItems().get(0)).isEqualTo(expected.getItems().get(0));
+        assertThat(actual.getItems().get(10)).isEqualTo(expected.getItems().get(10));
+    }
+
     private static CategoriesResponseDto getCategoriesResponseDto() {
         CategoryResponseDto category1 = new CategoryResponseDto(1, "전시", 10);
         CategoryResponseDto category2 = new CategoryResponseDto(2, "뮤지컬", 10);
@@ -75,5 +90,23 @@ public class JdbcReservationRepositoryTest {
                 Arguments.of(DisplayInfosRequestDto.builder().categoryId(3).start(0).build(), 4),
                 Arguments.of(DisplayInfosRequestDto.builder().categoryId(3).start(14).build(), 2)
         );
+    }
+
+    public static PromotionsResponseDto getPromotionsResponseDto() {
+        PromotionResponseDto promotion1 = new PromotionResponseDto(1, 1, 1, "전시", "Paper, Present:너를 위한 선물", 61);
+        PromotionResponseDto promotion2 = new PromotionResponseDto();
+        PromotionResponseDto promotion3 = new PromotionResponseDto();
+        PromotionResponseDto promotion4 = new PromotionResponseDto();
+        PromotionResponseDto promotion5 = new PromotionResponseDto();
+        PromotionResponseDto promotion6 = new PromotionResponseDto();
+        PromotionResponseDto promotion7 = new PromotionResponseDto();
+        PromotionResponseDto promotion8 = new PromotionResponseDto();
+        PromotionResponseDto promotion9 = new PromotionResponseDto();
+        PromotionResponseDto promotion10 = new PromotionResponseDto();
+        PromotionResponseDto promotion11 = new PromotionResponseDto(11, 44, 5, "연극", "어바웃 머니\n", 172);
+        List<PromotionResponseDto> promotions = List.of(promotion1, promotion2, promotion3, promotion4, promotion5,
+                promotion6, promotion7, promotion8, promotion9, promotion10, promotion11);
+
+        return new PromotionsResponseDto(promotions.size(), promotions);
     }
 }
