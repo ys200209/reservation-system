@@ -1,5 +1,6 @@
 package com.ys200209.reservationsystem.domain.service;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -8,6 +9,7 @@ import com.ys200209.reservationsystem.domain.category.CategoriesResponseDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfoResponseDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
 import com.ys200209.reservationsystem.domain.display.DisplayInfosResponseDto;
+import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import com.ys200209.reservationsystem.domain.repository.JdbcReservationRepositoryTest;
 import com.ys200209.reservationsystem.domain.repository.ReservationRepository;
 import java.util.List;
@@ -59,6 +61,21 @@ public class ReservationServiceTest {
         assertThat(actual.getTotalCount()).isEqualTo(16); // totalCount 검증
         assertThat(actual.getProductCount()).isEqualTo(4); // productCount 검증
         assertThat(actual.getProducts().size()).isEqualTo(4); // products 개수 검증
+    }
+    
+    @Test
+    void testApiPromotions() {
+        // given
+        PromotionsResponseDto promotions = JdbcReservationRepositoryTest.getPromotionsResponseDto();
+        
+        // when
+        when(repository.getPromotions()).thenReturn(promotions);
+        PromotionsResponseDto actual = service.getPromotions();
+        
+        // then
+        assertThat(actual.getSize()).isEqualTo(promotions.getSize());
+        assertThat(actual.getItems().get(0)).isEqualTo(promotions.getItems().get(0));
+        assertThat(actual.getItems().get(10)).isEqualTo(promotions.getItems().get(10));
     }
 
     public static DisplayInfosResponseDto generateDisplayInfosResponseDto() {
