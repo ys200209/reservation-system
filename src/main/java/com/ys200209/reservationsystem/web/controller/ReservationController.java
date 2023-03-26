@@ -24,26 +24,16 @@ public class ReservationController {
 
     @GetMapping("/categories")
     public CategoriesResponseDto getCategories() {
-        CategoriesResponseDto categories = service.getCategories();
-        log.info("getCategories(): {}", categories);
-        return categories;
+        return service.getCategories();
     }
 
     @GetMapping("/displayinfos")
     public DisplayInfosResponseDto getDisplayInfos(@RequestBody DisplayInfosRequestDto requestDto) {
-        DisplayInfosResponseDto displayInfos = service.getDisplayInfos(requestDto);
-        log.info("getDisplayInfos(): {}", displayInfos  );
-        return displayInfos;
+        return service.getDisplayInfos(requestDto);
     }
 
     @GetMapping("/promotions")
     public PromotionsResponseDto getPromotions() {
-        return PromotionsResponseDto.builder()
-                .items(
-                        List.of(
-                                PromotionResponseDto.builder().build()
-                        )
-                )
-                .build();
+        return service.getPromotions();
     }
 }
