@@ -830,17 +830,87 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 176
+Content-Length: 1955
 
 {
-  "size" : 0,
+  "size" : 11,
   "items" : [ {
-    "id" : 0,
-    "productId" : 0,
-    "categoryId" : 0,
-    "categoryName" : null,
-    "description" : null,
-    "fileId" : 0
+    "id" : 1,
+    "productId" : 1,
+    "categoryId" : 1,
+    "categoryName" : "전시",
+    "description" : "Paper, Present:너를 위한 선물",
+    "fileId" : 61
+  }, {
+    "id" : 2,
+    "productId" : 5,
+    "categoryId" : 1,
+    "categoryName" : "전시",
+    "description" : "알렉산더 지라드전",
+    "fileId" : 73
+  }, {
+    "id" : 3,
+    "productId" : 6,
+    "categoryId" : 1,
+    "categoryName" : "전시",
+    "description" : "캠퍼스 라이프 엑스포",
+    "fileId" : 78
+  }, {
+    "id" : 4,
+    "productId" : 9,
+    "categoryId" : 1,
+    "categoryName" : "전시",
+    "description" : "무민원화전",
+    "fileId" : 84
+  }, {
+    "id" : 5,
+    "productId" : 11,
+    "categoryId" : 2,
+    "categoryName" : "뮤지컬",
+    "description" : "뮤지컬 모래시계",
+    "fileId" : 90
+  }, {
+    "id" : 6,
+    "productId" : 12,
+    "categoryId" : 2,
+    "categoryName" : "뮤지컬",
+    "description" : "뮤지컬 올슉업",
+    "fileId" : 92
+  }, {
+    "id" : 7,
+    "productId" : 18,
+    "categoryId" : 2,
+    "categoryName" : "뮤지컬",
+    "description" : "뮤지컬 - 카라마조프",
+    "fileId" : 106
+  }, {
+    "id" : 8,
+    "productId" : 22,
+    "categoryId" : 3,
+    "categoryName" : "콘서트",
+    "description" : "노브레인 연말 콘서트 [락이 먼저다]",
+    "fileId" : 115
+  }, {
+    "id" : 9,
+    "productId" : 34,
+    "categoryId" : 4,
+    "categoryName" : "클래식",
+    "description" : "카마라타 크리스마스 특집 콘서트\n",
+    "fileId" : 145
+  }, {
+    "id" : 10,
+    "productId" : 41,
+    "categoryId" : 5,
+    "categoryName" : "연극",
+    "description" : "죽여주는이야기",
+    "fileId" : 165
+  }, {
+    "id" : 11,
+    "productId" : 44,
+    "categoryId" : 5,
+    "categoryName" : "연극",
+    "description" : "어바웃 머니\n",
+    "fileId" : 172
   } ]
 }</code></pre>
 </div>
@@ -886,12 +956,12 @@ Content-Length: 176
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].categoryName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 카테고리명</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>items[].description</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">프로모션 상품 설명</p></td>
 </tr>
 <tr>
@@ -908,7 +978,7 @@ Content-Length: 176
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-03-23 01:02:21 +0900
+Last updated 2023-03-23 23:53:39 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
