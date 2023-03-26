@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
+import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import com.ys200209.reservationsystem.domain.repository.JdbcReservationRepositoryTest;
 import com.ys200209.reservationsystem.domain.service.ReservationService;
 import com.ys200209.reservationsystem.domain.service.ReservationServiceTest;
@@ -76,5 +77,22 @@ class ReservationControllerTest {
                 .andExpect(jsonPath("$.productCount").value(4))
                 .andExpect(jsonPath("$.products").isArray())
                 .andExpect(jsonPath("$.products", hasSize(4)));
+    }
+
+    @Test
+    void testApiPromotions() throws Exception {
+        // given
+        PromotionsResponseDto expected = JdbcReservationRepositoryTest.getPromotionsResponseDto();
+
+        // when
+        when(service.getPromotions()).thenReturn(expected);
+
+        // then
+        mockMvc.perform(get("/api/promotions"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size").value(11))
+                .andExpect(jsonPath("$.items").isArray())
+                .andExpect(jsonPath("$.items[0].fileId").value(61))
+                .andExpect(jsonPath("$.items[10].fileId").value(172));
     }
 }
