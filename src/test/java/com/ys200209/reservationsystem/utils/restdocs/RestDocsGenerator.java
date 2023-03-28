@@ -28,20 +28,20 @@ public class RestDocsGenerator {
     private static RestDocumentationResultHandler generateResponseFieldsDocument(String identifier, RestDocsTemplate response) {
         return document(identifier,
                 preprocessResponse(prettyPrint()),
-                RestDocsFieldsGenerator.generateResponse(response.generateRestDocsFields()));
+                RestDocsFieldsGenerator.generateResponse(response.generateRestDocsFields(null)));
     }
 
     private static RestDocumentationResultHandler generateRequestFieldsDocument(String identifier, RestDocsTemplate request) {
         return document(identifier,
                 preprocessRequest(prettyPrint()),
-                RestDocsFieldsGenerator.generateRequest(request.generateRestDocsFields()));
+                RestDocsFieldsGenerator.generateRequest(request.generateRestDocsFields(null)));
     }
 
     private static RestDocumentationResultHandler generateAllFieldsDocument(String identifier, RestDocsTemplate request, RestDocsTemplate response) {
         return  document(identifier,
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
-                RestDocsFieldsGenerator.generateRequest(request.generateRestDocsFields()),
-                RestDocsFieldsGenerator.generateResponse(response.generateRestDocsFields()));
+                RestDocsFieldsGenerator.generateRequest(request.generateRestDocsFields(null)),
+                RestDocsFieldsGenerator.generateResponse(response.generateRestDocsFields(null)));
     }
 }

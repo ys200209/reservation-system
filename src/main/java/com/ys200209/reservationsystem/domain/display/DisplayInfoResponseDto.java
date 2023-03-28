@@ -1,9 +1,13 @@
 package com.ys200209.reservationsystem.domain.display;
 
+import com.ys200209.reservationsystem.utils.restdocs.RestDocsDto;
+import com.ys200209.reservationsystem.utils.restdocs.RestDocsTemplate;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,7 +16,8 @@ import org.springframework.jdbc.core.RowMapper;
 @Getter
 @ToString
 @RequiredArgsConstructor
-public class DisplayInfoResponseDto {
+@NoArgsConstructor(force = true)
+public class DisplayInfoResponseDto implements RestDocsTemplate {
     private final int id;
     private final int categoryId;
     private final int displayInfoId;
@@ -54,4 +59,26 @@ public class DisplayInfoResponseDto {
                 content, event, openingHours, placeName, placeLot, placeStreet, tel,
                 homepage, email, createDate, modifyDate, fileId);
     };
+
+    @Override
+    public List<RestDocsDto> generateRestDocsFields(String rootField) {
+        return List.of(
+                RestDocsDto.builder().path(rootField + ".id").description("전시 상품 ID").build(),
+                RestDocsDto.builder().path(rootField + ".categoryId").description("카테고리 ID").build(),
+                RestDocsDto.builder().path(rootField + ".displayInfoId").description("전시 상품 ID").build(),
+                RestDocsDto.builder().path(rootField + ".name").description("전시 상품명").build(),
+                RestDocsDto.builder().path(rootField + ".description").description("전시 상품 설명").build(),
+                RestDocsDto.builder().path(rootField + ".content").description("전시 상품 내용").build(),
+                RestDocsDto.builder().path(rootField + ".event").description("이벤트").build(),
+                RestDocsDto.builder().path(rootField + ".openingHours").description("오픈 시각").build(),
+                RestDocsDto.builder().path(rootField + ".placeName").description("장소").build(),
+                RestDocsDto.builder().path(rootField + ".placeLot").description("위치").build(),
+                RestDocsDto.builder().path(rootField + ".placeStreet").description("도로명").build(),
+                RestDocsDto.builder().path(rootField + ".tel").description("연락처").build(),
+                RestDocsDto.builder().path(rootField + ".homepage").description("홈페이지").build(),
+                RestDocsDto.builder().path(rootField + ".email").description("이메일").build(),
+                RestDocsDto.builder().path(rootField + ".createDate").description("생성일").build(),
+                RestDocsDto.builder().path(rootField + ".modifyDate").description("수정일").build(),
+                RestDocsDto.builder().path(rootField + ".fileId").description("파일 ID").build());
+    }
 }
