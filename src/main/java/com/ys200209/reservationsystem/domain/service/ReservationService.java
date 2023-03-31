@@ -14,9 +14,6 @@ public class ReservationService {
 
 
 
-    public DisplayInfosResponseDto getDisplayInfos(DisplayInfosRequestDto requestDto) {
-        return repository.getDisplayInfos(requestDto);
-    }
 
     public PromotionsResponseDto getPromotions() {
         return repository.getPromotions();

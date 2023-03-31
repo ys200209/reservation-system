@@ -1,6 +1,7 @@
-package com.ys200209.reservationsystem.web.controller;
+package com.ys200209.reservationsystem.domain.display.controller;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -8,11 +9,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ys200209.reservationsystem.domain.display.DisplayInfoService;
+import com.ys200209.reservationsystem.domain.display.DisplayInfoServiceTest;
 import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
-import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
-import com.ys200209.reservationsystem.domain.repository.JdbcReservationRepositoryTest;
 import com.ys200209.reservationsystem.domain.service.ReservationService;
 import com.ys200209.reservationsystem.domain.service.ReservationServiceTest;
+import com.ys200209.reservationsystem.web.controller.ReservationController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,14 +24,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-class ReservationControllerTest {
+class DisplayInfoApiControllerTest {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @InjectMocks
-    private ReservationController controller;
+    private DisplayInfoApiController controller;
 
     @Mock
-    private ReservationService service;
+    private DisplayInfoService service;
 
     private MockMvc mockMvc;
 
@@ -40,19 +42,24 @@ class ReservationControllerTest {
     }
 
     @Test
-    void testApiPromotions() throws Exception {
+    void testApiDisplayInfos() throws Exception {
         // given
-        PromotionsResponseDto expected = JdbcReservationRepositoryTest.getPromotionsResponseDto();
+        DisplayInfosRequestDto requestDto = DisplayInfosRequestDto.builder()
+                .categoryId(3)
+                .start(0)
+                .build();
 
         // when
-        when(service.getPromotions()).thenReturn(expected);
+        when(service.getDisplayInfos(any(DisplayInfosRequestDto.class))).thenReturn(DisplayInfoServiceTest.generateDisplayInfosResponseDto());
 
         // then
-        mockMvc.perform(get("/api/promotions"))
+        mockMvc.perform(get("/api/displayinfos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDto)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.size").value(11))
-                .andExpect(jsonPath("$.items").isArray())
-                .andExpect(jsonPath("$.items[0].fileId").value(61))
-                .andExpect(jsonPath("$.items[10].fileId").value(172));
+                .andExpect(jsonPath("$.totalCount").value(16))
+                .andExpect(jsonPath("$.productCount").value(4))
+                .andExpect(jsonPath("$.products").isArray())
+                .andExpect(jsonPath("$.products", hasSize(4)));
     }
 }

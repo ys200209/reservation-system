@@ -20,8 +20,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 public class ReservationServiceTest {
-    private CategoriesResponseDto categories = JdbcCategoryRepositoryTest.categories;
-
     @Mock
     private ReservationRepository repository;
 
@@ -31,27 +29,6 @@ public class ReservationServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-    }
-
-
-
-    @Test
-    void testApiDisplayInfos() {
-        // given
-        DisplayInfosRequestDto requestDto = DisplayInfosRequestDto.builder()
-                .categoryId(3)
-                .start(0)
-                .build();
-
-        // when
-        when(repository.getDisplayInfos(any(DisplayInfosRequestDto.class))).thenReturn(generateDisplayInfosResponseDto());
-
-        DisplayInfosResponseDto actual = service.getDisplayInfos(requestDto);
-
-        // then
-        assertThat(actual.getTotalCount()).isEqualTo(16); // totalCount 검증
-        assertThat(actual.getProductCount()).isEqualTo(4); // productCount 검증
-        assertThat(actual.getProducts().size()).isEqualTo(4); // products 개수 검증
     }
     
     @Test
@@ -67,20 +44,5 @@ public class ReservationServiceTest {
         assertThat(actual.getSize()).isEqualTo(promotions.getSize());
         assertThat(actual.getItems().get(0)).isEqualTo(promotions.getItems().get(0));
         assertThat(actual.getItems().get(10)).isEqualTo(promotions.getItems().get(10));
-    }
-
-    public static DisplayInfosResponseDto generateDisplayInfosResponseDto() {
-        return DisplayInfosResponseDto.builder()
-                .totalCount(16)
-                .productCount(4)
-                .products(
-                        List.of(
-                                DisplayInfoResponseDto.builder().build(),
-                                DisplayInfoResponseDto.builder().build(),
-                                DisplayInfoResponseDto.builder().build(),
-                                DisplayInfoResponseDto.builder().build()
-                        )
-                )
-                .build();
     }
 }

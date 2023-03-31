@@ -25,11 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReservationController {
     private final ReservationService service;
 
-    @GetMapping("/displayinfos")
-    public DisplayInfosResponseDto getDisplayInfos(@RequestBody DisplayInfosRequestDto requestDto) {
-        return service.getDisplayInfos(requestDto);
-    }
-
     @GetMapping("/promotions")
     public PromotionsResponseDto getPromotions() {
         return service.getPromotions();

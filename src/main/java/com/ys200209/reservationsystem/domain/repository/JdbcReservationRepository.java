@@ -1,10 +1,9 @@
 package com.ys200209.reservationsystem.domain.repository;
 
-import com.ys200209.reservationsystem.domain.category.CategoriesResponseDto;
-import com.ys200209.reservationsystem.domain.category.CategoryResponseDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfoResponseDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfosResponseDto;
+import com.ys200209.reservationsystem.domain.category.controller.dto.CategoriesResponseDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfoResponseDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosResponseDto;
 import com.ys200209.reservationsystem.domain.promotion.PromotionResponseDto;
 import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import com.ys200209.reservationsystem.utils.sql.SQLMapper;
@@ -24,33 +23,14 @@ public class JdbcReservationRepository implements ReservationRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Override
     public CategoriesResponseDto getCategories() {
-        List<CategoryResponseDto> results = jdbcTemplate.query(
-                SQLMapper.SELECT_CATEGORIES_QUERY,
-                CategoryResponseDto.categoryMapper);
-        return new CategoriesResponseDto(results.size(), results);
+        return null;
     }
 
     @Override
     public DisplayInfosResponseDto getDisplayInfos(DisplayInfosRequestDto requestDto) {
-        List<DisplayInfoResponseDto> results = jdbcTemplate.query(
-                SQLMapper.SELECT_DISPLAY_INFOS_QUERY,
-                DisplayInfoResponseDto.displayInfoMapper,
-                requestDto.getCategoryId()
-        );
-        return new DisplayInfosResponseDto(results.size(), SHOW_PRODUCT_COUNT_AMOUNT, getProductCountResult(results, requestDto));
-    }
-
-    private List<DisplayInfoResponseDto> getProductCountResult(List<DisplayInfoResponseDto> results, DisplayInfosRequestDto requestDto) {
-        int start = requestDto.getStart(); // 조회를 시작할 인덱스
-        int end = start + SHOW_PRODUCT_COUNT_AMOUNT ; // 조회를 마칠 인덱스
-        if (end >= results.size()) { // 조회할 인덱스가 상품 개수보다 많다면
-            end = results.size();
-        }
-
-        return IntStream.range(start, end)
-                .mapToObj(results::get)
-                .collect(Collectors.toList());
+        return null;
     }
 
     @Override
