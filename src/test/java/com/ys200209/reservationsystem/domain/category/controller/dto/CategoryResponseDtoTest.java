@@ -1,4 +1,4 @@
-package com.ys200209.reservationsystem.domain.category;
+package com.ys200209.reservationsystem.domain.category.controller.dto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
