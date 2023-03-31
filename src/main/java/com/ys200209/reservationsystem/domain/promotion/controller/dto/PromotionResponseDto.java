@@ -1,6 +1,5 @@
-package com.ys200209.reservationsystem.domain.promotion;
+package com.ys200209.reservationsystem.domain.promotion.controller.dto;
 
-import com.ys200209.reservationsystem.domain.category.CategoryResponseDto;
 import com.ys200209.reservationsystem.utils.restdocs.RestDocsDto;
 import com.ys200209.reservationsystem.utils.restdocs.RestDocsTemplate;
 import java.util.List;
@@ -43,6 +42,7 @@ public class PromotionResponseDto implements RestDocsTemplate {
                 RestDocsDto.builder().path(rootField + ".categoryId").description("프로모션 상품 카테고리 ID").build(),
                 RestDocsDto.builder().path(rootField + ".categoryName").description("프로모션 상품 카테고리명").build(),
                 RestDocsDto.builder().path(rootField + ".description").description("프로모션 상품 설명").build(),
-                RestDocsDto.builder().path(rootField + ".fileId").description("file_info 테이블의 id (product_image의 타입중 ma인 경우만)").build());
+                RestDocsDto.builder().path(rootField + ".fileId")
+                        .description("file_info 테이블의 id (product_image의 타입중 ma인 경우만)").build());
     }
 }

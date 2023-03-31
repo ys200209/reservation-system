@@ -1,24 +1,11 @@
 package com.ys200209.reservationsystem.web.controller;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
-import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
-import com.ys200209.reservationsystem.domain.repository.JdbcReservationRepositoryTest;
 import com.ys200209.reservationsystem.domain.service.ReservationService;
-import com.ys200209.reservationsystem.domain.service.ReservationServiceTest;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -37,22 +24,5 @@ class ReservationControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-    }
-
-    @Test
-    void testApiPromotions() throws Exception {
-        // given
-        PromotionsResponseDto expected = JdbcReservationRepositoryTest.getPromotionsResponseDto();
-
-        // when
-        when(service.getPromotions()).thenReturn(expected);
-
-        // then
-        mockMvc.perform(get("/api/promotions"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.size").value(11))
-                .andExpect(jsonPath("$.items").isArray())
-                .andExpect(jsonPath("$.items[0].fileId").value(61))
-                .andExpect(jsonPath("$.items[10].fileId").value(172));
     }
 }

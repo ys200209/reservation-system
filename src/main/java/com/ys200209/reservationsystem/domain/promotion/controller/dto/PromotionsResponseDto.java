@@ -1,4 +1,4 @@
-package com.ys200209.reservationsystem.domain.promotion;
+package com.ys200209.reservationsystem.domain.promotion.controller.dto;
 
 import com.ys200209.reservationsystem.utils.restdocs.RestDocsDto;
 import com.ys200209.reservationsystem.utils.restdocs.RestDocsTemplate;
