@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
-    private final JdbcCategoryRepository repository;
+    private final CategoryRepository repository;
 
     public CategoriesResponseDto getCategories() {
         return repository.getCategories();
