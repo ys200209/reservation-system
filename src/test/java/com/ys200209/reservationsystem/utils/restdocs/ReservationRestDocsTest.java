@@ -11,11 +11,10 @@ import static org.springframework.restdocs.request.RequestDocumentation.pathPara
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ys200209.reservationsystem.domain.category.CategoriesResponseDto;
-import com.ys200209.reservationsystem.domain.detaildisplay.DetailDisplayInfosRequestDto;
+import com.ys200209.reservationsystem.domain.category.controller.dto.CategoriesResponseDto;
 import com.ys200209.reservationsystem.domain.detaildisplay.DetailDisplayInfosResponseDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfosResponseDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosResponseDto;
 import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
-import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.templates.TemplateFormats;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;

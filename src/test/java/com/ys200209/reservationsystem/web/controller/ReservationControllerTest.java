@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
 import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import com.ys200209.reservationsystem.domain.repository.JdbcReservationRepositoryTest;
 import com.ys200209.reservationsystem.domain.service.ReservationService;
@@ -39,23 +39,7 @@ class ReservationControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
-    @Test
-    void testApiCategories() throws Exception {
-        // when
-        when(service.getCategories()).thenReturn(JdbcReservationRepositoryTest.categories);
 
-        // then
-        mockMvc.perform(get("/api/categories"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.size").exists())
-                .andExpect(jsonPath("$.items").isArray())
-                .andExpect(jsonPath("$.items[0].id").value(1))
-                .andExpect(jsonPath("$.items[0].name").value("전시"))
-                .andExpect(jsonPath("$.items[0].count").value(10))
-                .andExpect(jsonPath("$.items[4].id").value(5))
-                .andExpect(jsonPath("$.items[4].name").value("연극"))
-                .andExpect(jsonPath("$.items[4].count").value(13));
-    }
 
     @Test
     void testApiDisplayInfos() throws Exception {

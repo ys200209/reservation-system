@@ -1,14 +1,14 @@
 package com.ys200209.reservationsystem.domain.service;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import com.ys200209.reservationsystem.domain.category.CategoriesResponseDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfoResponseDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfosRequestDto;
-import com.ys200209.reservationsystem.domain.display.DisplayInfosResponseDto;
+import com.ys200209.reservationsystem.domain.category.JdbcCategoryRepositoryTest;
+import com.ys200209.reservationsystem.domain.category.controller.dto.CategoriesResponseDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfoResponseDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosResponseDto;
 import com.ys200209.reservationsystem.domain.promotion.PromotionsResponseDto;
 import com.ys200209.reservationsystem.domain.repository.JdbcReservationRepositoryTest;
 import com.ys200209.reservationsystem.domain.repository.ReservationRepository;
@@ -20,7 +20,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 public class ReservationServiceTest {
-    private CategoriesResponseDto categories = JdbcReservationRepositoryTest.categories;
+    private CategoriesResponseDto categories = JdbcCategoryRepositoryTest.categories;
 
     @Mock
     private ReservationRepository repository;
@@ -33,16 +33,7 @@ public class ReservationServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void testApiCategories() {
-        // when
-        when(repository.getCategories()).thenReturn(categories);
 
-        CategoriesResponseDto actual = service.getCategories();
-
-        // then
-        assertThat(actual).isEqualTo(categories);
-    }
 
     @Test
     void testApiDisplayInfos() {
