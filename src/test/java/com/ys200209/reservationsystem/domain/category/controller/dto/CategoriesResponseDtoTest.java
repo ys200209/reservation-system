@@ -1,8 +1,9 @@
-package com.ys200209.reservationsystem.domain.category;
+package com.ys200209.reservationsystem.domain.category.controller.dto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import com.ys200209.reservationsystem.domain.category.controller.dto.CategoriesResponseDto;
+import com.ys200209.reservationsystem.domain.category.controller.dto.CategoryResponseDto;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
