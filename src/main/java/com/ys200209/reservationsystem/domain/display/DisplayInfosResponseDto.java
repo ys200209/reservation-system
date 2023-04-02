@@ -43,4 +43,9 @@ public class DisplayInfosResponseDto implements RestDocsTemplate {
         results.add(RestDocsDto.builder().path("products[]").description("전시 상품 정보").build());
         results.addAll(new DisplayInfoResponseDto().generateRestDocsFields("products[]"));
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }

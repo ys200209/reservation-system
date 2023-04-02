@@ -32,4 +32,9 @@ public class DisplayInfosRequestDto implements RestDocsTemplate {
     private void generateStart(List<RestDocsDto> results) {
         results.add(RestDocsDto.builder().path("start").description("조회 시작 위치").build());
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }

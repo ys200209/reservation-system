@@ -33,4 +33,9 @@ public class ProductPrice implements RestDocsTemplate {
                 RestDocsDto.builder().path(rootField + ".createDate").description("상품 가격 생성일").build(),
                 RestDocsDto.builder().path(rootField + ".modifyDate").description("상품 가격 수정일").build());
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }

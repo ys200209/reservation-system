@@ -45,4 +45,9 @@ public class PromotionResponseDto implements RestDocsTemplate {
                 RestDocsDto.builder().path(rootField + ".description").description("프로모션 상품 설명").build(),
                 RestDocsDto.builder().path(rootField + ".fileId").description("file_info 테이블의 id (product_image의 타입중 ma인 경우만)").build());
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }

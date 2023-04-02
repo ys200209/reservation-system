@@ -81,4 +81,9 @@ public class DisplayInfoResponseDto implements RestDocsTemplate {
                 RestDocsDto.builder().path(rootField + ".modifyDate").description("수정일").build(),
                 RestDocsDto.builder().path(rootField + ".fileId").description("파일 ID").build());
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }

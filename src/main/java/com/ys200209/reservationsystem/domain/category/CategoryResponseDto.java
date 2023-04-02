@@ -39,4 +39,9 @@ public class CategoryResponseDto implements RestDocsTemplate {
                 RestDocsDto.builder().path(rootField + ".count").description("카테고리에 포함된 전시 상품(display_info)의 수").build()
         );
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }
