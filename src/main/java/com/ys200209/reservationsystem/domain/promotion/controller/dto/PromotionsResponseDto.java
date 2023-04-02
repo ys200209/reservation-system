@@ -33,4 +33,9 @@ public class PromotionsResponseDto implements RestDocsTemplate {
         results.add(RestDocsDto.builder().path("items[]").description("프로모션 상품 정보").build());
         results.addAll(new PromotionResponseDto().generateRestDocsFields("items[]"));
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }

@@ -38,4 +38,9 @@ public class CategoriesResponseDto implements RestDocsTemplate {
         results.add(RestDocsDto.builder().path("items[]").description("카테고리 정보").build());
         results.addAll(new CategoryResponseDto().generateRestDocsFields("items[]"));
     }
+
+    @Override
+    public boolean isPathParameters() {
+        return false;
+    }
 }
