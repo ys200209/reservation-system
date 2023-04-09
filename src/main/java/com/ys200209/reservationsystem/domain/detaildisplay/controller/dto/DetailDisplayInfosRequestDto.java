@@ -1,4 +1,4 @@
-package com.ys200209.reservationsystem.domain.detaildisplay;
+package com.ys200209.reservationsystem.domain.detaildisplay.controller.dto;
 
 import com.ys200209.reservationsystem.utils.restdocs.RestDocsDto;
 import com.ys200209.reservationsystem.utils.restdocs.RestDocsTemplate;
@@ -20,5 +20,10 @@ public class DetailDisplayInfosRequestDto implements RestDocsTemplate {
         return List.of(
                 RestDocsDto.builder().path("displayId").description("전시 상품 아이디").build()
         );
+    }
+
+    @Override
+    public boolean isPathParameters() {
+        return true;
     }
 }

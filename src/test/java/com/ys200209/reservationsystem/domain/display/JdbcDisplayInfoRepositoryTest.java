@@ -1,14 +1,15 @@
 package com.ys200209.reservationsystem.domain.display;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfoImageDto;
+import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfoResponseDto;
 import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
 import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosResponseDto;
-import com.ys200209.reservationsystem.domain.repository.JdbcReservationRepository;
-import com.ys200209.reservationsystem.domain.repository.ReservationRepository;
+import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -20,11 +21,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @DataJdbcTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-class JdbcDisplayInfoRepositoryTest {
+public class JdbcDisplayInfoRepositoryTest {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-    private JdbcDisplayInfoRepository repository;
+    private DisplayInfoRepository repository;
 
     @BeforeEach
     void setUp() {
@@ -42,6 +43,51 @@ class JdbcDisplayInfoRepositoryTest {
         assertThat(actual.getTotalCount()).isEqualTo(16); // totalCount 검증
         assertThat(actual.getProductCount()).isEqualTo(4); // productCount 검증
         assertThat(actual.getProducts().size()).isEqualTo(expectedSize); // products 개수 검증
+    }
+
+    @Test
+    void testDisplayInfo() {
+        // given
+        DisplayInfoResponseDto expected = getDisplayInfo();
+
+        // when
+        DisplayInfoResponseDto actual = repository.getDisplayInfo(1);
+
+        // then
+        assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertThat(actual.getName()).isEqualTo(expected.getName());
+    }
+
+    @Test
+    void testDisplayInfoImages() {
+        // given
+        List<DisplayInfoImageDto> expected = getDisplayInfoImages();
+
+        // when
+        List<DisplayInfoImageDto> actual = repository.getDisplayInfoImages(1);
+
+        // then
+        assertThat(actual.size()).isEqualTo(expected.size());
+        assertThat(actual.get(0).getId()).isEqualTo(expected.get(0).getId());
+        assertThat(actual.get(0).getDisplayInfoId()).isEqualTo(expected.get(0).getDisplayInfoId());
+        assertThat(actual.get(0).getFileId()).isEqualTo(expected.get(0).getFileId());
+    }
+
+    public static List<DisplayInfoImageDto> getDisplayInfoImages() {
+        return List.of(
+                DisplayInfoImageDto.builder()
+                        .id(1)
+                        .displayInfoId(1)
+                        .fileId(1)
+                        .build()
+        );
+    }
+
+    public static DisplayInfoResponseDto getDisplayInfo() {
+        return DisplayInfoResponseDto.builder()
+                .id(1)
+                .name("전시")
+                .build();
     }
 
     public static Stream<Arguments> generateDisplayInfosRequestDto() {

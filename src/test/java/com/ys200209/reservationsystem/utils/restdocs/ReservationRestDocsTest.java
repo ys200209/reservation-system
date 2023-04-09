@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ys200209.reservationsystem.domain.category.controller.dto.CategoriesResponseDto;
+import com.ys200209.reservationsystem.domain.detaildisplay.controller.dto.DetailDisplayInfosRequestDto;
+import com.ys200209.reservationsystem.domain.detaildisplay.controller.dto.DetailDisplayInfosResponseDto;
 import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosRequestDto;
 import com.ys200209.reservationsystem.domain.display.controller.dto.DisplayInfosResponseDto;
 import com.ys200209.reservationsystem.domain.promotion.controller.dto.PromotionsResponseDto;
@@ -77,19 +79,13 @@ public class ReservationRestDocsTest {
                 .andDo(RestDocsGenerator.generate(URI, null, new PromotionsResponseDto()));
     }
 
-    /*@Test
+
+    @Test
     void generateDocsApiDetailDisplayInfos() throws Exception {
         // then
         String URI = "/api/displayinfos/{displayId}";
         mockMvc.perform(get(URI, 1))
                 .andExpect(status().isOk())
-//                .andDo(RestDocsGenerator.generate("/api/detailDisplayInfos", new DetailDisplayInfosRequestDto(), new DetailDisplayInfosResponseDto()));
-                .andDo(document("/api/detailDisplayInfos",
-                        preprocessRequest(prettyPrint()),
-                        preprocessResponse(prettyPrint()),
-                        pathParameters(
-                                parameterWithName("displayId").description("The ID of the user to retrieve")
-                        ),
-                        RestDocsFieldsGenerator.generateResponse(new DetailDisplayInfosResponseDto().generateRestDocsFields(null))));
-    }*/
+                .andDo(RestDocsGenerator.generate("/api/detailDisplayInfos", new DetailDisplayInfosRequestDto(), new DetailDisplayInfosResponseDto()));
+    }
 }

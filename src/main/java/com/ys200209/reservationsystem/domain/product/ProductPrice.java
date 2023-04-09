@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.RowMapper;
 
 @Builder
 @Getter
@@ -21,6 +22,18 @@ public class ProductPrice implements RestDocsTemplate {
     private final int discountRate;
     private final LocalDateTime createDate;
     private final LocalDateTime modifyDate;
+
+    public static final RowMapper<ProductPrice> productPriceMapper = (rs, rowNum) -> {
+        return ProductPrice.builder()
+                .id(rs.getInt("id"))
+                .productId(rs.getInt("productId"))
+                .priceTypeName(rs.getString("priceTypeName"))
+                .price(rs.getInt("price"))
+                .discountRate(rs.getInt("discountRate"))
+                .createDate(rs.getObject("createDate", LocalDateTime.class))
+                .modifyDate(rs.getObject("modifyDate", LocalDateTime.class))
+                .build();
+    };
 
     @Override
     public List<RestDocsDto> generateRestDocsFields(String rootField) {

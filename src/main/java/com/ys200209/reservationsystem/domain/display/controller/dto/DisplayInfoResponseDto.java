@@ -5,6 +5,7 @@ import com.ys200209.reservationsystem.utils.restdocs.RestDocsTemplate;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.jdbc.core.RowMapper;
 @ToString
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
+@EqualsAndHashCode
 public class DisplayInfoResponseDto implements RestDocsTemplate {
     private final int id;
     private final int categoryId;

@@ -1,4 +1,4 @@
-package com.ys200209.reservationsystem.domain.product;
+package com.ys200209.reservationsystem.domain.product.dto;
 
 import java.time.LocalDateTime;
 import lombok.Builder;
