@@ -79,7 +79,6 @@ public class ReservationRestDocsTest {
                 .andDo(RestDocsGenerator.generate(URI, null, new PromotionsResponseDto()));
     }
 
-
     @Test
     void generateDocsApiDetailDisplayInfos() throws Exception {
         // then
