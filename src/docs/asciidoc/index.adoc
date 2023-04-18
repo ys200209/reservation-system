@@ -31,3 +31,11 @@ include::{snippets}/api/promotions/http-request.adoc[]
 === 응답
 include::{snippets}/api/promotions/http-response.adoc[]
 include::{snippets}/api/promotions/response-fields.adoc[]
+
+== 전시 정보 상세 조회
+=== 요청
+include::{snippets}/api/detailDisplayInfos/path-parameters.adoc[]
+
+=== 응답
+include::{snippets}/api/detailDisplayInfos/http-response.adoc[]
+include::{snippets}/api/detailDisplayInfos/response-fields.adoc[]
